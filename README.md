@@ -31,7 +31,7 @@
 
        - WSL2 Ubuntu 26.04.1 LTS (Windows에서 Linux 환경을 구성)
        
-       - Docker Desktop (Windows에서 Docker를 관리)
+       - Docker Desktop (Windows에서 Docker를 관리, Docker Desktop을 설치하는 과정에서 VMM설정에 wsl2 지정하고 이후 setting에 들어가 WSL intergration에 체크하여 Ubuntu에서 Docker 명령어를 사용 가능하게 함)
 
   4. 버전 관리 및 협업
 

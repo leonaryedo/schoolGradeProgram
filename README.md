@@ -90,19 +90,19 @@
 
       주요 표현
        ```
-       >wsl --install
-       >wsl
-       $cd ~
-       $mkdir projects                    #폴더 만들기
-       $cd projects
-       $mkdir grading-app
-       $pwd                               #현재 위치 확인
-       $cd grading-app
-       $mkdir -p app/static app/templates #-p는 중간 폴더까지 한 번에 만들어 줌
-       $mkdir -p data/test_papers data/results
-       $touch app/main.py app/grader.py app/utils.py                #빈 파일 생성
-       $touch Dockerfile docker-compose.yml requirements.txt .gitignore .dockerignore .env
-       $echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
+       wsl --install
+       wsl
+       cd ~
+       mkdir projects                    #폴더 만들기
+       cd projects
+       mkdir grading-app
+       pwd                               #현재 위치 확인
+       cd grading-app
+       mkdir -p app/static app/templates #-p는 중간 폴더까지 한 번에 만들어 줌
+       mkdir -p data/test_papers data/results
+       touch app/main.py app/grader.py app/utils.py                #빈 파일 생성
+       touch Dockerfile docker-compose.yml requirements.txt .gitignore .dockerignore .env
+       echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
        ```
 
   1. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
@@ -139,9 +139,9 @@
     
       주요 표현
        ```
-       $find app data -type d exec chmod 775 {} \;
-       $find app data -type f exec chmod 644 {} \;
-       $chmod 664 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt
+       find app data -type d exec chmod 775 {} \;                    #찾아라 app과 data 타입이 폴더(app data 폴더 및 그 안에 있는 모든 폴더) 그리고 실행하라 권한을 775로 바꾸기, {}에 앞에서 찾은 폴더가 들어감
+       find app data -type f exec chmod 644 {} \;
+       chmod 664 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt      #권한을 바꾸어라 664로 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt 에서 
        ``` 
      
   

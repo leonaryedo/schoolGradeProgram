@@ -57,26 +57,26 @@
 
   2. 프로젝트 폴더 및 파일 권한
 
-    drwxr-xr-x  .
+    755 drwxr-xr-x  .
     
-    drwxr-xr-x  ..
+    755 drwxr-xr-x  ..
     
-    -rw-rw-r--  .dockerignore
+    664 -rw-rw-r--  .dockerignore
     
-    -rw-r--r--  .env
+    644 -rw-r--r--  .env
     
-    drwxr-xr-x  .git
+    755 drwxr-xr-x  .git
     
-    -rw-rw-r--  .gitignore
+    664 -rw-rw-r--  .gitignore
     
-    -rw-rw-r--  Dockerfile
+    664 -rw-rw-r--  Dockerfile
     
-    drwxrwxr-x  app
+    775 drwxrwxr-x  app
     
-    drwxrwxr-x  data
+    775 drwxrwxr-x  data
     
-    -rw-rw-r--  docker-compose.yml
+    664 -rw-rw-r--  docker-compose.yml
     
-    -rw-rw-r--  requirements.txt
+    664 -rw-rw-r--  requirements.txt
 
   

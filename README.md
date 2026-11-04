@@ -49,5 +49,34 @@
      * HTML, CSS, JavaScript (사용자 인터페이스 구성, Flask에 자체적으로 연결 예정)
 
 ***   
-## 손글씨 채점 프로그램 (grading-app) 프로젝트이 폴더 구조와 권한 
+## 손글씨 채점 프로그램 (grading-app) 프로젝트의 폴더 구조와 권한 
+
+  1. 프로젝트 폴더 및 파일 구조
+
+<img width="254" height="460" alt="image" src="https://github.com/user-attachments/assets/41e4e8e0-9bef-48dc-be8c-9e8a4b00d4d8" />
+
+  2. 프로젝트 폴더 및 파일 권한
+
+    drwxr-xr-x  .
+    
+    drwxr-xr-x  ..
+    
+    -rw-rw-r--  .dockerignore
+    
+    -rw-r--r--  .env
+    
+    drwxr-xr-x  .git
+    
+    -rw-rw-r--  .gitignore
+    
+    -rw-rw-r--  Dockerfile
+    
+    drwxrwxr-x  app
+    
+    drwxrwxr-x  data
+    
+    -rw-rw-r--  docker-compose.yml
+    
+    -rw-rw-r--  requirements.txt
+
   

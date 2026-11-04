@@ -37,7 +37,22 @@
 
      * 로컬 소스코드 버전 관리: Git
     
+       - Git 설치:
+         ```
+         wsl
+         sudo apt update
+         sudo apt install git
+         git -v
+         cd projects
+         cd schoolGradeProgram         #여기에서 git clone https://github.com/사용자명/grading-app.git 해도 됨. 그럼 전체 레포지토리가 복사되고 git관리가 시작됨
+         git init                      #git 관리가 시작됨
+         ```
+    
      * 원격 저장소, 팀 협업: GitHub
+     
+       - 웹에서 가입하고 레포지토리 schoolGradeProgram을 만들기, 평가를 위해서 외부에서 접근할 수 있도록 레포지토리를 public로 설정
+      
+       - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서 사용됨
 
 
 ### 향후 추가 기술 스택

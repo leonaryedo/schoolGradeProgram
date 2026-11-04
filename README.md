@@ -4,7 +4,7 @@
 ## 프로젝트 개요
   '손글씨 채점 프로그램(grading-app)' 을 만드는 가상의 상황을 설정하여 협업이 가능한 '작업실'꾸미기
 
-
+***
 ### 기술 스택 
   1. 언어 및 프레임워크
      
@@ -37,8 +37,8 @@
      * OpenCV 또는 Pillow (손글씨 이미지 전처리)
     
      *  EasyOCR 또는 Tesseract OCR (손글씨를 텍스트로 변환)
-    
-       - EasyOCR이 손글씨 인식은 잘 되나 용량이 크기에 requirements.txt에 easyocr(소문자)쓰게 되면 매번 docker build할 때 마다 빌드 시간이 길어질 수 있음
+
+        - EasyOCR이 손글씨 인식은 잘 되나 용량이 크기에 requirements.txt에 easyocr(소문자)쓰게 되면 매번 docker build할 때 마다 빌드 시간이 길어질 수 있음
      
   2. 데이터 저장
 
@@ -47,4 +47,7 @@
   3. 프론트엔드
 
      * HTML, CSS, JavaScript (사용자 인터페이스 구성, Flask에 자체적으로 연결 예정)
+
+***   
+## 손글씨 채점 프로그램 (grading-app) 프로젝트이 폴더 구조와 권한 
   

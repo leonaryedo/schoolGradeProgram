@@ -51,32 +51,97 @@
 ***   
 ## 손글씨 채점 프로그램 (grading-app) 프로젝트의 폴더 구조와 권한 
 
-  1. 프로젝트 폴더 및 파일 구조
 
 <img width="254" height="460" alt="image" src="https://github.com/user-attachments/assets/41e4e8e0-9bef-48dc-be8c-9e8a4b00d4d8" />
 
-  2. 프로젝트 폴더 및 파일 권한
+  1. 프로젝트 폴더 및 파일 구조
+     
+     * app/(grading-app의 구현 부분)
+       
+       - main.py: web server(Flask)의 구현과 API엔드 포인트
+      
+       - grader.py: 핵심채점로직(OCR호출, 채점 로직, 채점 결과 json파일로 results/로 보내기)
+      
+       - utils.py: 이미지(손글씨 등) 처리를 위한 보조 함수 등
+      
+       - templates/: HTML파일(사용자 화면)
+      
+       - static/: css, js, 이미지 파일 등
+      
+     * data/(데이터 저장소 - 채점 할 시험지, 정답지, 채점 결과지 등)
 
-    755 drwxr-xr-x  .
+       - test_papers/: 채점 할 시험지 저장소
+      
+       - answers.json: 정답지, 추후에 폴더로 바꾸어서 확인 할 필요가 있음
+      
+       - results/: 채점 결과지 저장소
+      
+     * Dockerfile: 도커 이미지 생성 설계도
     
-    755 drwxr-xr-x  ..
+     * docker-compose.yml: 전체 실행 설계도(포트, 볼륨 설정 등)
     
-    664 -rw-rw-r--  .dockerignore
+     * requirements.txt: 필요한 라이브러리 목록(Flask, Pillow, easyocr 등 작업과정에 추가 가능)
     
-    644 -rw-r--r--  .env
+     * .gitignore:깃에 제외 할 목록
     
-    755 drwxr-xr-x  .git
+     * .dockerignore: 도커에서 제외 할 목록
     
-    664 -rw-rw-r--  .gitignore
-    
-    664 -rw-rw-r--  Dockerfile
-    
-    775 drwxrwxr-x  app
-    
-    775 drwxrwxr-x  data
-    
-    664 -rw-rw-r--  docker-compose.yml
-    
-    664 -rw-rw-r--  requirements.txt
+     * .env: 개인 환경 파일
 
+      주요 표현
+       ```
+       >wsl --install
+       >wsl
+       $cd ~
+       $mkdir projects                    #폴더 만들기
+       $cd projects
+       $mkdir grading-app
+       $pwd                               #현재 위치 확인
+       $cd grading-app
+       $mkdir -p app/static app/templates #-p는 중간 폴더까지 한 번에 만들어 줌
+       $mkdir -p data/test_papers data/results
+       $touch app/main.py app/grader.py app/utils.py                #빈 파일 생성
+       $touch Dockerfile docker-compose.yml requirements.txt .gitignore .dockerignore .env
+       $echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
+       ```
+
+  1. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
+
+     * 755 drwxr-xr-x  .
+    
+     * 755 drwxr-xr-x  ..
+    
+     * 664 -rw-rw-r--  .dockerignore
+    
+     * 644 -rw-r--r--  .env
+    
+     * 755 drwxr-xr-x  .git
+    
+     * 664 -rw-rw-r--  .gitignore
+    
+     * 664 -rw-rw-r--  Dockerfile
+    
+     * 775 drwxrwxr-x  app
+    
+     * 644 -rw-r--r--  grader.py
+    
+     * 644 -rw-r--r--  main.py
+    
+     * 644 -rw-r--r--  utils.py
+    
+     * 775 drwxrwxr-x  data
+    
+     * 644 -rw-r--r--  answers.json
+    
+     * 664 -rw-rw-r--  docker-compose.yml
+    
+     * 664 -rw-rw-r--  requirements.txt
+    
+      주요 표현
+       ```
+       $find app data -type d exec chmod 775 {} \;
+       $find app data -type f exec chmod 644 {} \;
+       $chmod 664 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt
+       ``` 
+     
   

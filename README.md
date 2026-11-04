@@ -56,6 +56,40 @@
       
        - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서 사용됨
 
+  4. 개발 도구
+
+     * 소스코드 편집기: vscode
+    
+       - vscode를 다운 받아서 설치, 그 과정에서 PATH에 추가(다시 시작한 후 사용 가능), '파일의 상황에 맞는 메뉴에 "Code(으)로 열기" 작업 추가'도 체크
+      
+       - vscode와 wsl을 연결하기 위해서 vscode의 extensions 에서 wsl을 install
+      
+       ```
+       wsl
+       cd ~
+       cd projects/schoolGradeProgram
+       code .                          #code명령으로 현재 폴더에서 vscode 실행함
+       ```
+
+       - 문제: wsl에서 vscode로 접근하는게 안 됨
+         
+       <img width="542" height="58" alt="image" src="https://github.com/user-attachments/assets/1b8bd220-ff3c-40dd-90f7-c16aace67e2b" />
+
+       - 가설: 대부분의 프로그램이 접근이 안 되는 경우는 path문제 이므로 이를 해결하기로 함.
+      
+       - 해결1: windows의 시스템환경변수 편집에 해당되는 변수를 넣음. 그런데 C:\Users\leo\AppData\Local\Programs\Microsoft VS Code\bin 게 있었음.
+      
+       - 가설: path가 있으므로, 그럼 wsl이 가져오지 못 하는 게 아닐까?
+      
+       - 해결: echo $PATH | grep "VS Code"  #echo출력하라 $PATH주소록을 그리고 그걸 받아서 VS Code만 찾아서 출력해라. 그런데 반응 없음
+      
+       - 가설: wsl이 vscode를 가져오지 못 하다.
+      
+       - 해결: sudo nano /etc/wsl.conf    #wsl의 설정을 가져와서 [interop] appendwindowspath=false -> true로 변경
+      
+         <img width="358" height="202" alt="image" src="https://github.com/user-attachments/assets/691260f3-d269-42a2-98c2-89bfdbae6654" />
+
+       
 
 ### 향후 추가 기술 스택
   1. 이미지 처리

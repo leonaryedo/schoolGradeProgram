@@ -1,6 +1,6 @@
-from flask import Flask
+from flask import Flask                                      #파이썬으로 웹서버를 만들기 위한 flask라이브러리를 추가하기
 
-app = Flask(__name__)
+app = Flask(__name__)                                        #
 
 @app.get("/")
 def home():

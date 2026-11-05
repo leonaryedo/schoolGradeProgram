@@ -31,7 +31,14 @@
        - 가설: Flask는 라이브러니니 install이 가능할 것이다. 그래서 pip으로 해보자
        - 해결1 실패: pip install flask(전체에 설치 되기에 이점은 가상환경을 설정하는 것도 고려할 필요가 있음. 그런데 여전히 설치가 안됨. WSL의 Python 3.14의 시스템 정책으로 안 됨. 가상환경을 하라고 에러가 뜸)
        - 가설: 프로젝트 폴더를 만들때 가상 환경을 설정하고 실시
-       - 해결2: 
+       - 해결2:
+         ```
+         [해당 프로젝트 폴더 안으로 들어감]
+         python3 -m venv .venv
+         source .venv/bin/activate    #source는 "스크립트(파일) 안의 설정을 '현재 내 터미널 세션'에 그대로 적용해라. 파일은 activate 임
+         pip install flask        #flask 등을 설치하기 또는 pip install -r requirements.txt 로 한꺼 번에 할 수 있음
+         deactivate
+         ```
 
   2. 컨테이너 및 실행 환경
 
@@ -185,7 +192,7 @@
        echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
        ```
 
-  1. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
+  2. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
 
      * 755 drwxr-xr-x  .
     

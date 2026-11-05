@@ -56,8 +56,22 @@
          wsl
          docker --version
          docker info
+         docker run hello-world
+         docker-compose up --build -d   #docker-compose.yml파일이 있는 경우에는 이게 좋음
+         docker build -t my-app-name    #Dockerfile을 읽어서 이미지 만듬
+         docker run my-app-name         #위에서 만든 이미지로 컨테이너 만듬. 단, flask같은 접속 포트가 필요하면 포트 포워딩을 해야 함 docker run -p 8080:5000 my-app-name
+         docker images          #이미지 목록 확인
+         docker ps -a         #현재 실행중인 프로세스 ps = process status 즉, 현재 도커에서 돌아가고 있는 컨테이너 목록 확인
          ```
          <img width="1029" height="522" alt="image" src="https://github.com/user-attachments/assets/8bb56142-ea92-4e40-a727-5e650e4ed42d" />
+      
+         <img width="1679" height="674" alt="image" src="https://github.com/user-attachments/assets/ca288c8f-4045-4e73-9579-d9b5ccae5492" />
+
+         <img width="1191" height="794" alt="image" src="https://github.com/user-attachments/assets/513aa737-e4fb-46e0-9192-2c1414d5f4f7" />
+
+         <img width="1700" height="347" alt="image" src="https://github.com/user-attachments/assets/b296cc12-f30a-4011-b2f9-b380ea51f0b6" />
+
+
 
 
   3. 버전 관리 및 협업
@@ -191,6 +205,11 @@
        touch Dockerfile docker-compose.yml requirements.txt .gitignore .dockerignore .env
        echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
        ```
+       
+      사용기록 일부
+    
+<img width="1002" height="267" alt="image" src="https://github.com/user-attachments/assets/53c53e4e-a714-4dc5-83c2-b0c3639216c5" />
+
 
   2. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
 

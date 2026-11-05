@@ -67,7 +67,7 @@
          mkdir projects
          cd projects
          cd schoolGradeProgram         #여기에서 git clone https://github.com/사용자명/grading-app.git 해도 됨. 그럼 전체 레포지토리가 복사되고 git관리가 시작됨
-         git init                      #git 관리가 시작됨
+         git init                      #git 관리가 시작됨, git clone을 했으면 git관리가 시작되고 있음( .git의 숨겨진 파일이 있으면 git으로 관리하고 있는 곳임)
          ```
     
      * 원격 저장소, 팀 협업: GitHub

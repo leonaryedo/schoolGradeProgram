@@ -74,13 +74,13 @@
      
        - 웹에서 가입하고 레포지토리 schoolGradeProgram을 만들기, 평가를 위해서 외부에서 접근할 수 있도록 레포지토리를 public로 설정
       
-       - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서 사용됨
+       - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서도 사용됨, 자주 사용되기에 별도의 .env파일에 저장해둘 필요가 있음
 
   4. 개발 도구
 
      * 소스코드 편집기: vscode
     
-       - vscode를 다운 받아서 설치, 그 과정에서 PATH에 추가(다시 시작한 후 사용 가능), '파일의 상황에 맞는 메뉴에 "Code(으)로 열기" 작업 추가'도 체크
+       - vscode를 다운 받아서 설치, 그 과정에서 PATH에 추가 꼭 하기. 
       
        - vscode와 wsl을 연결하기 위해서 vscode의 extensions 에서 wsl을 install
       

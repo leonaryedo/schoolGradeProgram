@@ -14,11 +14,14 @@
 
          ```
          [windows 검색 -> 관리자 권한으로 powershell 열기]
-         wsl  --install                       #Docker 및 개발도구가 Linux에서 작동이 많이 되기에, windows에서 Linux를 사용할 수 있는 wsl 설치하기, 적용을 위해서는 시스템 다시 시작 
-         wsl -l -v                            #wsl 설치 확인하기
-         python3 --version                    #만약 파이썬이 없다면
+         wsl  --install                       #Docker 및 개발도구가 Linux에서 작동이 많이 되기에, windows에서 Linux를 사용할 수 있는 wsl 설치하기
+                                              #가상 머신 플랫폼 및 Linux용 Windows 하위 시스템 기능 활성화 및 최신 리눅스 커널 다운로드, 적용을 위해서는 시스템 다시 시작 
+         wsl --install                        #WSL 기능은 이미 켜져 있으므로, 그럼 기본 리눅스 배포판(보통 Ubuntu)을 다운로드해서 설치
+         wsl -l -v                            #wsl의 리눅스 설치 확인하기
+         wsl                                  #wsl linux환경 열기
+         python3 --version                    #만약 파이썬이 없다면(보통 파이썬이 같이 깔림)
          sudo apt update
-         sudo apt install python3 python3-pip python3-venv          #pip는 파이썬 전용 도구 상점, venv는 가상환경으로 여러 프로젝트가 다른 환경에서 돌아간다면 필요함 현재는 불필요
+         sudo apt install python3 python3-pip python3-venv          #pip는 파이썬 전용 도구 상점, venv는 가상환경으로 여러 프로젝트가 다른 환경에서 돌아간다면 필요함
          ```
      
      * 경량 웹 프레임 워크: Flask 3.x (가볍고 빠르게 웹 서버 및 백엔드 로직 추가로 일부 프론트엔드 구현, 손글씨 시험지 업로드 및 채점 결과 반환에 사용, 라이브러리 처럼 사용하는 경량 프레임 워크)
@@ -27,6 +30,8 @@
       
        - 가설: Flask는 라이브러니니 install이 가능할 것이다. 그래서 pip으로 해보자
        - 해결1 실패: pip install flask(전체에 설치 되기에 이점은 가상환경을 설정하는 것도 고려할 필요가 있음. 그런데 여전히 설치가 안됨. WSL의 Python 3.14의 시스템 정책으로 안 됨. 가상환경을 하라고 에러가 뜸)
+       - 가설: 프로젝트 폴더를 만들때 가상 환경을 설정하고 실시
+       - 해결2: 
 
   2. 컨테이너 및 실행 환경
 
@@ -34,7 +39,19 @@
 
        - WSL2 Ubuntu (Windows에서 Linux 환경을 구성)
        
-       - Docker Desktop (Windows에서 Docker를 관리, Docker Desktop을 설치하는 과정에서 VMM설정에 wsl2 지정하고 이후 setting에 들어가 WSL intergration에 체크하여 Ubuntu에서 Docker 명령어를 사용 가능하게 함)
+       - Docker Desktop (Windows에서 컨테이너를 관리하는 역할
+                         Docker Desktop의 다운로드 파일은 컴퓨터 시스템 정보에서 확인가능
+                         AMD와 ARM은 CPU의 설계 방식(아키텍처)을 의미하고, 보통 intel의 x64 또는 x86_64는 AMD이고 애플 m1 m2 m3 등은 ARM임
+                         설치하는 과정에서 VMM설정에 wsl2 지정하고 못하면 나중에 setting도 가능,
+                         이후에 프로그램을 열어서 setting에 들어가 WSL intergration에 체크하여 wsl - Ubuntu에서 Docker 명령어를 사용 가능하게 하기)
+         ```
+         [도커 설치 및 점검]
+         wsl
+         docker --version
+         docker info
+         ```
+         <img width="1029" height="522" alt="image" src="https://github.com/user-attachments/assets/8bb56142-ea92-4e40-a727-5e650e4ed42d" />
+
 
   3. 버전 관리 및 협업
 
@@ -46,6 +63,8 @@
          sudo apt update
          sudo apt install git
          git -v
+         cd ~                          #home으로 이동
+         mkdir projects
          cd projects
          cd schoolGradeProgram         #여기에서 git clone https://github.com/사용자명/grading-app.git 해도 됨. 그럼 전체 레포지토리가 복사되고 git관리가 시작됨
          git init                      #git 관리가 시작됨

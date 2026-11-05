@@ -31,7 +31,14 @@
        - 가설: Flask는 라이브러니니 install이 가능할 것이다. 그래서 pip으로 해보자
        - 해결1 실패: pip install flask(전체에 설치 되기에 이점은 가상환경을 설정하는 것도 고려할 필요가 있음. 그런데 여전히 설치가 안됨. WSL의 Python 3.14의 시스템 정책으로 안 됨. 가상환경을 하라고 에러가 뜸)
        - 가설: 프로젝트 폴더를 만들때 가상 환경을 설정하고 실시
-       - 해결2: 
+       - 해결2:
+         ```
+         [해당 프로젝트 폴더 안으로 들어감]
+         python3 -m venv .venv
+         source .venv/bin/activate    #source는 "스크립트(파일) 안의 설정을 '현재 내 터미널 세션'에 그대로 적용해라. 파일은 activate 임
+         pip install flask        #flask 등을 설치하기 또는 pip install -r requirements.txt 로 한꺼 번에 할 수 있음
+         deactivate
+         ```
 
   2. 컨테이너 및 실행 환경
 
@@ -67,20 +74,20 @@
          mkdir projects
          cd projects
          cd schoolGradeProgram         #여기에서 git clone https://github.com/사용자명/grading-app.git 해도 됨. 그럼 전체 레포지토리가 복사되고 git관리가 시작됨
-         git init                      #git 관리가 시작됨
+         git init                      #git 관리가 시작됨, git clone을 했으면 git관리가 시작되고 있음( .git의 숨겨진 파일이 있으면 git으로 관리하고 있는 곳임)
          ```
     
      * 원격 저장소, 팀 협업: GitHub
      
        - 웹에서 가입하고 레포지토리 schoolGradeProgram을 만들기, 평가를 위해서 외부에서 접근할 수 있도록 레포지토리를 public로 설정
       
-       - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서 사용됨
+       - developer setting에서 token(classic)을 발급 받아서 코디세이 코드저장소에 넣어두기, 이 토큰은 나중에 git push origin main에서도 사용됨, 자주 사용되기에 별도의 .env파일에 저장해둘 필요가 있음
 
   4. 개발 도구
 
      * 소스코드 편집기: vscode
     
-       - vscode를 다운 받아서 설치, 그 과정에서 PATH에 추가(다시 시작한 후 사용 가능), '파일의 상황에 맞는 메뉴에 "Code(으)로 열기" 작업 추가'도 체크
+       - vscode를 다운 받아서 설치, 그 과정에서 PATH에 추가 꼭 하기. 
       
        - vscode와 wsl을 연결하기 위해서 vscode의 extensions 에서 wsl을 install
       
@@ -185,7 +192,7 @@
        echo "{}" > data/answers.json    #파일 없으면 파일 생성 및 덮어쓰기, >>는 이어서 쓰기
        ```
 
-  1. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
+  2. 프로젝트 폴더 및 파일 권한(설정 이유: Docker 권한 문제, 서버 배포 시에 권한 문제)
 
      * 755 drwxr-xr-x  .
     

@@ -13,7 +13,8 @@
        - 나의 로컬 프로젝트 폴더에는  Python 3.14 등의 최신 버전을 깔려있고, Dockerfile에는 Python 3.11-slim을 깐 이유는 개발은 최신으로 실현 및 배포는 가볍고 안정성을 구현
 
          ```
-         wsl  --install                       #Docker 및 개발도구가 Linux에서 작동이 많이 되기에, windows에서 Linux를 사용할 수 있는 wsl 설치하기 
+         [windows 검색 -> 관리자 권한으로 powershell 열기]
+         wsl  --install                       #Docker 및 개발도구가 Linux에서 작동이 많이 되기에, windows에서 Linux를 사용할 수 있는 wsl 설치하기, 적용을 위해서는 시스템 다시 시작 
          wsl -l -v                            #wsl 설치 확인하기
          python3 --version                    #만약 파이썬이 없다면
          sudo apt update

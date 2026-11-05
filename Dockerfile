@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt   #실행해라 ,--no-ca
 
 COPY app/ /app/                     #복사해라 내 작업 프로젝트의 app/을 /app/으로
 
+COPY data/ /data/                   #복사해라 내 작업 프로젝트의 data/을 /data/으로
+
 EXPOSE 5000                         #이 컨테이너는가 사용할 포트는  5000번 포트
 
 CMD ["python", "main.py"]          # 컨테이너가 딱 켜지는 순간 명령어를 실행해라 python main.py 

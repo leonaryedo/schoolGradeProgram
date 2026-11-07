@@ -54,10 +54,11 @@
          ```
          [도커 설치 및 점검]
          wsl
+         cd ~
+         cd projects/schooGradeProgram
          docker --version
          docker info
          docker run hello-world
-         docker-compose up --build -d   #docker-compose.yml파일이 있는 경우에는 이게 좋음
          docker build -t my-app-name    #Dockerfile을 읽어서 이미지 만듬
          docker run my-app-name         #위에서 만든 이미지로 컨테이너 만듬. 단, flask같은 접속 포트가 필요하면 포트 포워딩을 해야 함 docker run -p 8080:5000 my-app-name
          docker images          #이미지 목록 확인
@@ -71,6 +72,17 @@
 
          <img width="1700" height="347" alt="image" src="https://github.com/user-attachments/assets/b296cc12-f30a-4011-b2f9-b380ea51f0b6" />
 
+         ```
+         [docker-compose.yml을 통한 포트매핑, 바인드마운트, 명명볼륨]
+         wsl
+         cd ~
+         cd projects/schooGradeProgram
+         docker-compose up --build -d
+         curl http://localhost:8080         #포트매핑을 통한 브라우저 호출
+
+         ```
+
+         <img width="1176" height="76" alt="image" src="https://github.com/user-attachments/assets/37cf1acd-207f-4d65-9ebb-b8ead1e3bab1" />
 
 
 

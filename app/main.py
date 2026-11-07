@@ -9,7 +9,7 @@ app = Flask(__name__)                                        #파이썬이 해�
 def home():
 	return "grading-app is running!"
 
-@app.get("/create-teat-data")								 #새로운 엔드 포인트 생성
+@app.get("/create-test-data")								 #새로운 엔드 포인트 생성
 def creat_test_data():										 #브라우저에 접속하면  /data 디렉토리에 파일 생성				
 	data_dir = "/data/results"								 #컨테이너 상에서 저장할 위치 변수에 넣기, 왜냐하면 app.py가 컨테이너 안에서 작동하기에 생성된 데이터도 컨테이너 상에서 저장할 위치를 만들고 이후에 named volumns를 통해서 지정된 외부의 저장소에 저장됨. 
 	os.makedirs(data_dir, exist_ok=True)					 #폴더만들기, exist_ok=True는 폴더가 있어도 에러 안 남

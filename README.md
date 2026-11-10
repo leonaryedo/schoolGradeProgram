@@ -5,8 +5,9 @@
   '손글씨 채점 프로그램(grading-app)' 을 만드는 가상의 상황을 설정하여 협업이 가능한 '작업실'꾸미기
 
 ***
-## 1) 실행 환경
+## 1. 실행 환경
 - OS: Ubuntu 26.04.1 LTS
+  
 ```bash
 cat /etc/os-release      #운영체제에 대한 정보가 담긴 문서를 읽기
 ```
@@ -20,22 +21,22 @@ docker -v
 git -v
 ```
 
-## 2) 수행 체크리스트
+## 2. 수행 체크리스트
 
-터미널 기본 조작 및 폴더 구성
+### 가. 터미널 기본 조작 및 폴더 구성
     
-    - 📂 1. 경로 및 파일 탐색 (Navigation)
+##### 📂 1) 경로 및 파일 탐색 (Navigation)  
     
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
 | `pwd` | 현재 작업 중인 디렉토리의 절대 경로를 출력합니다. | `pwd` |
 | `ls` | 현재 디렉토리의 파일 및 폴더 목록을 출력합니다. | `ls -la` (숨김 파일 포함 상세 보기) |
 | `cd` | 다른 디렉토리로 이동합니다. | `cd /var/log`, `cd ~` (홈), `cd ..` (상위) |
+<img width="1204" height="183" alt="image" src="https://github.com/user-attachments/assets/3f2b8bfe-888d-4ab1-b127-fbd7abd60a89" />
 
-    - 🛠️ 2. 파일 및 디렉토리 관리 (File & Directory Management)
+
+##### 🛠️ 2) 파일 및 디렉토리 관리 (File & Directory Management)
       
-
-
 
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
@@ -44,10 +45,11 @@ git -v
 | `cp` | 파일이나 디렉토리를 복사합니다. | `cp file.txt backup.txt`, `cp -r dir1 dir2` |
 | `mv` | 파일이나 디렉토리를 이동하거나 이름을 변경합니다. | `mv old.txt new.txt` |
 | `rm` | 파일이나 디렉토리를 삭제합니다. | `rm -rf target_dir` (⚠️ 주의: 강제 삭제) |
+<img width="1360" height="505" alt="image" src="https://github.com/user-attachments/assets/f25b6e4d-083a-4e2d-af3d-5bfa3f56d080" />
 
 ---
 
-##### 📖 3. 파일 내용 확인 (Viewing File Contents)
+##### 📖 3) 파일 내용 확인 (Viewing File Contents)
 
 텍스트 파일의 내용을 터미널 창에서 확인하는 명령어입니다.
 
@@ -55,12 +57,14 @@ git -v
 | :--- | :--- | :--- |
 | `cat` | 파일의 전체 내용을 출력합니다. | `cat /etc/os-release` |
 | `less` | 파일 내용을 페이지 단위로 끊어서 확인합니다. (종료: `q`) | `less large_file.log` |
-| `head` | 파일의 **처음부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `head -n 20 file.txt` |
-| `tail` | 파일의 **마지막부터** 지정한 줄 수만큼 출력합니다. | `tail -f /var/log/syslog` (실시간 로그 추적) |
+| `head` | 파일의 **처음부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `head -n 20 file.txt` (n = number |
+| `tail` | 파일의 **마지막부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `tail -n 20 -f /var/log/syslog` (f = follow 실시간 생성되는 자료 추적) |
+<img width="1850" height="1699" alt="image" src="https://github.com/user-attachments/assets/baf935ca-6789-472f-9ccc-d0f0d4ea84e1" />
+
 
 ---
 
-##### 🔒 4. 권한 및 관리자 제어 (Permissions & Superuser)
+##### 🔒 4) 권한 및 관리자 제어 (Permissions & Superuser)
 
 파일 권한을 조정하거나 관리자 권한을 획득하는 명령어입니다.
 
@@ -69,20 +73,28 @@ git -v
 | `sudo` | 관리자(root) 권한으로 명령어를 실행합니다. | `sudo apt update` |
 | `chmod` | 파일이나 디렉토리의 접근 권한을 변경합니다. | `chmod 755 script.sh` |
 | `chown` | 파일이나 디렉토리의 소유자와 그룹을 변경합니다. | `chown user:user file.txt` |
+<img width="1616" height="339" alt="image" src="https://github.com/user-attachments/assets/b940424c-28c1-46b7-a6f9-e93662dcdacf" />
+<img width="1172" height="289" alt="image" src="https://github.com/user-attachments/assets/da0118cd-6da3-4632-ad85-42abe1a71fb4" />
 
 ---
 
-##### 💻 5. 시스템 정보 및 프로세스 (System & Processes)
+##### 💻 5) 시스템 정보 및 프로세스 (System & Processes)
 
 시스템 상태, 디스크 용량, 실행 중인 프로세스를 확인하는 명령어입니다.
 
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
-| `df` | 파일 시스템의 디스크 사용량을 확인합니다. | `df -h` (Human-readable 형식) |
-| `du` | 특정 디렉토리의 용량을 확인합니다. | `du -sh /home/user` |
+| `df` | 파일 시스템의 디스크 사용량을 확인합니다. | `df -h` (Human-readable 사람이 읽기 편한 단위) |
+| `du` | 특정 디렉토리의 용량을 확인합니다. | `du -sh /home` (Summarize 전체용량 + Human-readable |
 | `free` | 시스템 메모리(RAM) 사용량을 확인합니다. | `free -h` |
-| `ps` | 현재 실행 중인 프로세스 목록을 확인합니다. | `ps aux` |
-| `top` / `htop` | 실시간으로 시스템 자원 사용량과 프로세스를 모니터링합니다. | `top` |
+| `ps` | 현재 실행 중인 프로세스 목록을 확인합니다. | `ps aux` ( all모든 프로세스 user-oriented사용자별 extended백그라운드까지 |
+| `top` | 실시간으로 시스템 자원 사용량과 프로세스를 모니터링합니다. | `top` |
+<img width="1700" height="324" alt="image" src="https://github.com/user-attachments/assets/4baa6b33-92a9-420e-a4df-ac1f7ae0a1b4" />
+<img width="1453" height="362" alt="image" src="https://github.com/user-attachments/assets/783b3e45-377e-42da-83ac-e148a058f09d" />
+<img width="1465" height="437" alt="image" src="https://github.com/user-attachments/assets/93bc4bd2-efa1-473e-9c45-e70500f2f21f" />
+
+
+
       
 - [x] 권한 변경 실습
 - [x] Docker 설치/점검

@@ -24,6 +24,8 @@ git -v
 ## 2. 수행 체크리스트
 
 ### 가. 터미널 기본 조작 및 폴더 구성
+
+---
     
 ##### 📂 1) 경로 및 파일 탐색 (Navigation)  
     
@@ -35,8 +37,7 @@ git -v
 <img width="1204" height="183" alt="image" src="https://github.com/user-attachments/assets/3f2b8bfe-888d-4ab1-b127-fbd7abd60a89" />
 
 
-##### 🛠️ 2) 파일 및 디렉토리 관리 (File & Directory Management)
-      
+##### 🛠️ 2) 파일 및 디렉토리 관리 (File & Directory Management)    
 
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
@@ -47,7 +48,6 @@ git -v
 | `rm` | 파일이나 디렉토리를 삭제합니다. | `rm -rf target_dir` (⚠️ 주의: 강제 삭제) |
 <img width="1360" height="505" alt="image" src="https://github.com/user-attachments/assets/f25b6e4d-083a-4e2d-af3d-5bfa3f56d080" />
 
----
 
 ##### 📖 3) 파일 내용 확인 (Viewing File Contents)
 
@@ -62,8 +62,6 @@ git -v
 <img width="1850" height="1699" alt="image" src="https://github.com/user-attachments/assets/baf935ca-6789-472f-9ccc-d0f0d4ea84e1" />
 
 
----
-
 ##### 🔒 4) 권한 및 관리자 제어 (Permissions & Superuser)
 
 파일 권한을 조정하거나 관리자 권한을 획득하는 명령어입니다.
@@ -76,7 +74,6 @@ git -v
 <img width="1616" height="339" alt="image" src="https://github.com/user-attachments/assets/b940424c-28c1-46b7-a6f9-e93662dcdacf" />
 <img width="1172" height="289" alt="image" src="https://github.com/user-attachments/assets/da0118cd-6da3-4632-ad85-42abe1a71fb4" />
 
----
 
 ##### 💻 5) 시스템 정보 및 프로세스 (System & Processes)
 
@@ -93,11 +90,88 @@ git -v
 <img width="1453" height="362" alt="image" src="https://github.com/user-attachments/assets/783b3e45-377e-42da-83ac-e148a058f09d" />
 <img width="1465" height="437" alt="image" src="https://github.com/user-attachments/assets/93bc4bd2-efa1-473e-9c45-e70500f2f21f" />
 
+  
+### 나. 권한 변경 실습
+
+---
+
+##### 🔐 1) 리눅스 파일 권한 (`rwx`) 및 권한 변경 (`chmod`)
+
+리눅스(WSL/Ubuntu 포함)에서는 **다중 사용자 환경**을 안전하게 보호하기 위해 파일과 디렉터리에 **읽기, 쓰기, 실행 권한**을 엄격하게 관리합니다.
+
+| 권한 | 기호 | 파일에서의 의미 | 디렉터리(폴더)에서의 의미 |
+| :---: | :---: | :--- | :--- |
+| **Read (읽기)** | `r` | 파일의 내용을 읽거나 출력할 수 있습니다. | 디렉터리 안의 **파일 목록(ls)을 조회**할 수 있습니다. |
+| **Write (쓰기)** | `w` | 파일의 내용을 수정, 저장, 삭제할 수 있습니다. | 디렉터리 안에 **파일을 생성, 삭제, 이름 변경**할 수 있습니다. |
+| **Execute (실행)** | `x` | 파일을 프로그램이나 스크립트로 **실행**할 수 있습니다. | 디렉터리 내부로 **진입(`cd`)**하거나 하위 경로에 접근할 수 있습니다. |
+
+##### 👥 2) 권한 대상 (Who)
+
+권한은 누구에게 부여하느냐에 따라 3가지 그룹으로 나뉩니다.
+1. **User (u):** 파일을 소유한 **사용자(나)**
+2. **Group (g):** 사용자가 속한 **그룹**
+3. **Others (o):** 시스템을 쓰는 **그 외의 모든 사용자**
+
+터미널에서 `ls -l` 명령어를 치면 다음과 같이 10글자로 표시됩니다.
+> 예시: `-rwxr-xr--`
+> * 첫 글자 `-`: 파일 유형 (`-`는 일반 파일, `d`는 디렉터리)
+> * 앞 3글자 (`rwx`): 소유자(User) 권한
+> * 중간 3글자 (`r-x`): 그룹(Group) 권한
+> * 마지막 3글자 (`r--`): 기타 사용자(Others) 권한
+
+#### 🛠️ 3) 권한 변경하기 (`chmod` 명령어)
+
+권한을 변경할 때는 **숫자(8진수) 방식**을 사용하는 것이 가장 직관적이고 편리합니다.
+
+🧮 8진수(숫자) 권한 계산법
+각 권한에는 고유한 숫자가 부여됩니다.
+* **`r` (읽기) = 4**
+* **`w` (쓰기) = 2**
+* **`x` (실행) = 1**
+* **없음 = 0**
+
+이 숫자들을 더해서 **[소유자][그룹][기타사용자]** 순서로 3자리의 숫자를 만들어 지정합니다.
+
+| 권한 조합 | 합산 숫자 | 의미 |
+| :---: | :---: | :--- |
+| `rwx` | **7** | 읽기 + 쓰기 + 실행 모두 가능 |
+| `r-x` | **5** | 읽기 + 실행 가능 (쓰기 불가) |
+| `r--` | **4** | 읽기만 가능 |
+| `---` | **0** | 권한 없음 |
+
+```bash
+# 실습 예제
+mkdir app
+touch app/my_script.sh
+ls -l 
+chmod 775 app
+ls -l
+cd app
+ls -l my_script.sh
+chmod 775 my_script.sh
+ls -l my_script.sh
+```
+<img width="998" height="95" alt="image" src="https://github.com/user-attachments/assets/759ec487-7c20-4f1f-b6c4-a3d48324b3aa" />
+<img width="1012" height="113" alt="image" src="https://github.com/user-attachments/assets/a3763eeb-e791-47b9-9a87-bd27fdebc100" />
+<img width="1014" height="175" alt="image" src="https://github.com/user-attachments/assets/ae7698c1-74c5-4dc8-8d8b-701637148c95" />
+
+### 다.  Docker 설치/점검
+
+---
+
+##### 🐳 1) Docker 버전 및 데몬(Daemon) 상태 확인 방법
+
+WSL(Ubuntu) 환경에서 도커가 정상적으로 설치되었는지, 그리고 도커 엔진(데몬)이 현재 정상적으로 실행되어 작동하고 있는지 점검하는 방법입니다.
+
+| 점검 항목 | 명령어 | 설명 |
+| :---: | :--- | :--- |
+| **Docker 버전 확인** | `docker --version` | 현재 설치된 도커 클라이언트 및 엔진의 버전을 확인합니다. |
+| **Docker 데몬 상태 확인** | `docker info` | 도커 데몬의 실행 여부와 상세 시스템 정보(컨테이너 수, 스토리지 드라이버 등)를 확인합니다. |
+| **서비스 상태 확인 (WSL용)** | `sudo service docker status` | WSL 우분투 내부에서 도커 백그라운드 서비스의 구동 상태를 확인합니다. |
+<img width="1065" height="415" alt="image" src="https://github.com/user-attachments/assets/5363ab71-7a25-4ab2-b9a8-cc42fe38cd6d" />
+<img width="1056" height="108" alt="image" src="https://github.com/user-attachments/assets/79c1442d-b84f-4fcc-ad46-9586877c0987" />
 
 
-      
-- [x] 권한 변경 실습
-- [x] Docker 설치/점검
 - [x] hello-world 실행
 - [x] Dockerfile 빌드/실행
 - [x] 포트 매핑 접속(2회)
@@ -115,6 +189,11 @@ $ ls -la
 
 
 
+# 미션1을 실전처럼 바꾸기: 내 컴퓨터에 개발자용 '작업실'로 '손글씨 채점 프로그램' 만들기
+
+
+## 프로젝트 개요
+  '손글씨 채점 프로그램(grading-app)' 을 만드는 가상의 상황을 설정하여 협업이 가능한 '작업실'꾸미기
 
 
 ## 기술 스택 

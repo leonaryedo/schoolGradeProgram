@@ -171,6 +171,68 @@ WSL(Ubuntu) 환경에서 도커가 정상적으로 설치되었는지, 그리고
 <img width="1065" height="415" alt="image" src="https://github.com/user-attachments/assets/5363ab71-7a25-4ab2-b9a8-cc42fe38cd6d" />
 <img width="1056" height="108" alt="image" src="https://github.com/user-attachments/assets/79c1442d-b84f-4fcc-ad46-9586877c0987" />
 
+#### 🐳 2) Docker 기본 운영 명령어 및 실습 가이드
+
+도커를 활용할 때 가장 빈번하게 사용하는 핵심 명령어들을 **이미지 관리**, **컨테이너 제어**, **운영 및 모니터링** 3가지 카테고리로 나누어 정리한 내용입니다.
+
+  - 이미지(Image) 관리 명령어
+
+이미지는 컨테이너를 생성하기 위한 읽기 전용 설계도입니다.
+
+| 명령어 | 설명 | 대표적인 사용 예시 |
+| :--- | :--- | :--- |
+| **`docker pull`** | 원격 저장소(Docker Hub)에서 이미지 다운로드 | `docker pull nginx:latest` |
+| **`docker images`** | 내 컴퓨터에 다운로드된 이미지 목록 확인 | `docker images` |
+| **`docker rmi`** | 불필요한 이미지 삭제 | `docker rmi nginx` |
+<img width="1470" height="737" alt="image" src="https://github.com/user-attachments/assets/b982868d-7562-4a53-aea7-b33b831f77da" />
+
+  - 컨테이너(Container) 제어 명령어
+
+컨테이너는 이미지를 실행하여 동작시키는 독립된 실행 공간입니다.
+
+| 명령어 | 설명 | 대표적인 사용 예시 |
+| :--- | :--- | :--- |
+| **`docker run`** | 이미지를 기반으로 새로운 컨테이너 생성 및 실행 | `docker run -d -p 80:80 --name my-web nginx` |
+| **`docker ps`** | 현재 **실행 중인** 컨테이너 목록 확인 | `docker ps` |
+| **`docker ps -a`** | 정지된 것을 포함해 **모든** 컨테이너 목록 확인 | `docker ps -a` |
+| **`docker stop`** | 실행 중인 컨테이너 안전하게 중지 | `docker stop my-web` |
+| **`docker start`** | 정지된 컨테이너 다시 시작 | `docker start my-web` |
+| **`docker rm`** | 중지된 컨테이너 삭제 | `docker rm my-web` |
+<img width="1779" height="626" alt="image" src="https://github.com/user-attachments/assets/4ba707ab-6652-4dab-b64b-47f77c7b895e" />
+
+  - ubuntu 컨테이너를 실행하고 내부 진입 후 간단 명령 실습
+<img width="2115" height="280" alt="image" src="https://github.com/user-attachments/assets/502b1586-cb44-4134-9b08-0e6fa5bbb0c0" />
+문제: ubuntu컨테이너를 실행했는데 바로 종료되는 문제 발생
+
+해결: docker는 컨테이너 안에서 메인 프로세스가 실행되는 동안에만 유지됨.
+ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널창과 입력이 없으면 바로 종료되기에 터미널(--interactive 키보드입력을 받음, --tty 터미널 단말기)
+그래서 `-it`옵션을 사용하기.
+<img width="1649" height="475" alt="image" src="https://github.com/user-attachments/assets/c61c805d-d529-41b2-ba27-33f7ab08828b" />
+
+#### 📊 3) 운영 및 모니터링 명령어
+
+실행 중인 컨테이너의 상태를 점검하고 디버깅할 때 사용합니다.
+
+| 명령어 | 설명 | 대표적인 사용 예시 |
+| :--- | :--- | :--- |
+| **`docker logs`** | 컨테이너 내부의 로그(출력 내용) 확인 | `docker logs my-web` |
+| **`docker stats`** | 실시간으로 컨테이너의 자원(CPU, 메모리 등) 사용량 확인 | `docker stats` |
+<img width="1471" height="363" alt="image" src="https://github.com/user-attachments/assets/18fa2b1a-ed15-4f85-8e0d-76ac78f4b5f6" />
+
+#### 💡 4) 실전 테스트 및 결과 기록 예시 (테스트용 Nginx 실행)
+
+가장 가벼운 테스트용 웹서버인 `nginx`를 이용해 전체 흐름을 실습하고 기록하는 예시입니다.
+
+#### ① 이미지 다운로드 및 목록 확인
+```bash
+# 1. Nginx 이미지 받기
+docker pull nginx
+
+# 2. 이미지 목록 확인
+docker images
+
+
+
 
 - [x] hello-world 실행
 - [x] Dockerfile 빌드/실행

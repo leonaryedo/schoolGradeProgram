@@ -308,11 +308,16 @@ ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널
          cd ~
          cd projects/schooGradeProgram
          docker-compose up --build -d
-         curl http://localhost:8080         #포트매핑을 통한 브라우저 호출
+         curl http://localhost:8080         #포트매핑을 통한 브라우저 호출 또는 직접 브라우저로 접근
+         curl http://localhost:8080/create-test-data        #포트매핑을 통한 브라우저 호출 또는 직접 브라우저로 접근
+         docker volume ls                    #명명볼륨을 확인하기 위한 볼륨 리스트 체크
+         docker run --rm -v schoolgradeprogram_db_data:/check alpine ls -R /check   #도커 내부에 저장된 데이터 찾기, 추후에 재 실행시에 그대로 있음.
 
          ```
 
          <img width="1176" height="76" alt="image" src="https://github.com/user-attachments/assets/37cf1acd-207f-4d65-9ebb-b8ead1e3bab1" />
+         <img width="1232" height="210" alt="스크린샷 2026-11-15 082052" src="https://github.com/user-attachments/assets/45e4f98b-722a-4c7c-a27e-f19c74ef57fb" />
+
 
 
 

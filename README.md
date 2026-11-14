@@ -301,6 +301,9 @@ ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널
          <img width="1191" height="794" alt="image" src="https://github.com/user-attachments/assets/513aa737-e4fb-46e0-9192-2c1414d5f4f7" />
 
          <img width="1700" height="347" alt="image" src="https://github.com/user-attachments/assets/b296cc12-f30a-4011-b2f9-b380ea51f0b6" />
+         
+
+       - docker-compose.yml을 통한 포트매핑, 바인드마운트, 명명볼륨
 
          ```
          [docker-compose.yml을 통한 포트매핑, 바인드마운트, 명명볼륨]
@@ -308,17 +311,57 @@ ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널
          cd ~
          cd projects/schooGradeProgram
          docker-compose up --build -d
-         curl http://localhost:8080         #포트매핑을 통한 브라우저 호출 또는 직접 브라우저로 접근
-         curl http://localhost:8080/create-test-data        #포트매핑을 통한 브라우저 호출 또는 직접 브라우저로 접근
+         curl http://localhost:8080         #포트매핑 확인: 브라우저 호출 또는 직접 브라우저로 접근
+         curl http://localhost:8080/create-test-data        #포트매핑 확인: 브라우저 호출 또는 직접 브라우저로 접근
+         docker-compose down                 #명명볼륨을 확인하기 위한 도커 다운
          docker volume ls                    #명명볼륨을 확인하기 위한 볼륨 리스트 체크
          docker run --rm -v schoolgradeprogram_db_data:/check alpine ls -R /check   #도커 내부에 저장된 데이터 찾기, 추후에 재 실행시에 그대로 있음.
-
+         docker run --rm -v schoolgradeprogram_db_data:/check alpine cat /check/results/grades.txt   #도커 내부에 저장된 데이터 찾아 읽기, 또는 도커데스크탑 앱에서 왼쪽 volumns에서 해당 볼륨을 찾아 확인 가능
+         docker-compose up --build -d        #바인드마운트 확인을 위한 도커 업
+         code .                              #vscode 실행, app.py파일 일부 수정, 즉 새로 생성될 파일에 'with checking bind mount"추가
+         docker run --rm -v schoolgradeprogram_db_data:/check alpine cat /check/results/grades.txt    #바로 반영이 됨 확인
          ```
 
          <img width="1176" height="76" alt="image" src="https://github.com/user-attachments/assets/37cf1acd-207f-4d65-9ebb-b8ead1e3bab1" />
          <img width="1232" height="210" alt="스크린샷 2026-11-15 082052" src="https://github.com/user-attachments/assets/45e4f98b-722a-4c7c-a27e-f19c74ef57fb" />
+         <img width="1362" height="76" alt="image" src="https://github.com/user-attachments/assets/79b6269c-0f94-4184-8fbb-06d2ada2c2b3" />
+         <img width="1394" height="268" alt="image" src="https://github.com/user-attachments/assets/8440a990-c5e8-4d26-8d71-53144a3d14c8" />
+         <img width="1264" height="666" alt="image" src="https://github.com/user-attachments/assets/9487e726-f336-4b2c-aae0-0e91a20ec500" />
 
 
+       - docker run --rm -v schoolgradeprogram_db_data:/check alpine cat /check/results/grades.txt 구문 분석
+
+          docker run:
+          
+          새로운 컨테이너를 만들고 실행하라는 시작 명령어입니다.
+         
+          --rm (Remove):
+          
+          **"일 다 끝나면 컨테이너를 자동으로 삭제해!"**라는 뜻입니다.
+         
+          이게 없으면 확인용으로 쓴 컨테이너가 찌꺼기처럼 계속 남아있게 됩니다. 깔끔한 정리를 위해 꼭 필요한 옵션이에요.
+         
+          -v schoolgradeprogram_db_data:/check (Volume):
+          
+          연결 고리입니다.
+         
+          schoolgradeprogram_db_data(내 컴퓨터에 있는 볼륨 이름)를 컨테이너 내부의 /check라는 폴더 이름으로 연결(마운트)하라는 뜻입니다.
+         
+          이제 컨테이너 안에서 /check 폴더를 열면, 실제로는 내 볼륨 안을 들여다보는 것과 같습니다.
+         
+          alpine:
+          
+          이 작업을 수행할 이미지 이름입니다.
+         
+          alpine은 용량이 매우 작고 가벼운(약 5MB) 리눅스 이미지라서, 이런 단순 확인 작업을 할 때 가장 많이 애용됩니다.
+         
+          cat /check/results/grades.txt:
+          
+          컨테이너가 켜지자마자 실행할 진짜 명령어입니다.
+         
+          cat은 파일의 내용을 화면에 출력하라는 리눅스 명령어입니다.
+         
+          아까 볼륨을 /check에 연결했으니, 그 안에 있는 results/grades.txt 파일을 읽으라고 시킨 것입니다.
 
 
   3. 버전 관리 및 협업

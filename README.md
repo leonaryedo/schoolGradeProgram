@@ -219,39 +219,16 @@ ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널
 | **`docker stats`** | 실시간으로 컨테이너의 자원(CPU, 메모리 등) 사용량 확인 | `docker stats` |
 <img width="1471" height="363" alt="image" src="https://github.com/user-attachments/assets/18fa2b1a-ed15-4f85-8e0d-76ac78f4b5f6" />
 
-#### 💡 4) 실전 테스트 및 결과 기록 예시 (테스트용 Nginx 실행)
+## 3. 실전 테스트 및 결과 기록 예시
 
-가장 가벼운 테스트용 웹서버인 `nginx`를 이용해 전체 흐름을 실습하고 기록하는 예시입니다.
+- hello-world 실행
+- Dockerfile 빌드/실행
+- 포트 매핑 접속
+- 바인드 마운트 반영
+- 볼륨 영속성
+- Git 설정 + VSCode GitHub 연동
 
-#### ① 이미지 다운로드 및 목록 확인
-```bash
-# 1. Nginx 이미지 받기
-docker pull nginx
-
-# 2. 이미지 목록 확인
-docker images
-
-
-
-
-- [x] hello-world 실행
-- [x] Dockerfile 빌드/실행
-- [x] 포트 매핑 접속(2회)
-- [x] 바인드 마운트 반영
-- [x] 볼륨 영속성
-- [x] Git 설정 + VSCode GitHub 연동
-
- ## 3) 수행 로그(발췌)
-bash$ pwd
-/home/user
-$ mkdir -p ~/codyssey/practice
-$ ls -la
-...
-   
-
-
-
-# 미션1을 실전처럼 바꾸기: 내 컴퓨터에 개발자용 '작업실'로 '손글씨 채점 프로그램' 만들기
+미션1을 실전처럼 바꾸기: 내 컴퓨터에 개발자용 '작업실'로 '손글씨 채점 프로그램' 만들기
 
 
 ## 프로젝트 개요

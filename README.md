@@ -57,7 +57,7 @@ git -v
 | :--- | :--- | :--- |
 | `cat` | 파일의 전체 내용을 출력합니다. | `cat /etc/os-release` |
 | `less` | 파일 내용을 페이지 단위로 끊어서 확인합니다. (종료: `q`) | `less large_file.log` |
-| `head` | 파일의 **처음부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `head -n 20 file.txt` (n = number |
+| `head` | 파일의 **처음부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `head -n 20 file.txt` (n = number) |
 | `tail` | 파일의 **마지막부터** 지정한 줄 수만큼 출력합니다. (기본 10줄) | `tail -n 20 -f /var/log/syslog` (f = follow 실시간 생성되는 자료 추적) |
 <img width="1850" height="1699" alt="image" src="https://github.com/user-attachments/assets/baf935ca-6789-472f-9ccc-d0f0d4ea84e1" />
 
@@ -82,7 +82,7 @@ git -v
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
 | `df` | 파일 시스템의 디스크 사용량을 확인합니다. | `df -h` (Human-readable 사람이 읽기 편한 단위) |
-| `du` | 특정 디렉토리의 용량을 확인합니다. | `du -sh /home` (Summarize 전체용량 + Human-readable |
+| `du` | 특정 디렉토리의 용량을 확인합니다. | `du -sh /home` (Summarize 전체용량 + Human-readable) |
 | `free` | 시스템 메모리(RAM) 사용량을 확인합니다. | `free -h` |
 | `ps` | 현재 실행 중인 프로세스 목록을 확인합니다. | `ps aux` ( all모든 프로세스 user-oriented사용자별 extended백그라운드까지 |
 | `top` | 실시간으로 시스템 자원 사용량과 프로세스를 모니터링합니다. | `top` |

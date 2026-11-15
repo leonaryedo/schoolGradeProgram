@@ -31,7 +31,7 @@ git -v
     
 | 명령어 | 설명 | 예시 |
 | :--- | :--- | :--- |
-| `pwd` | 현재 작업 중인 디렉토리의 절대 경로를 출력합니다. | `pwd` |
+| `pwd` | 현재 작업 중인 디렉토리의 절대 경로를 출력합니다. | `pwd` (print working directory) |
 | `ls` | 현재 디렉토리의 파일 및 폴더 목록을 출력합니다. | `ls -la` (숨김 파일 포함 상세 보기) |
 | `cd` | 다른 디렉토리로 이동합니다. | `cd /var/log`, `cd ~` (홈), `cd ..` (상위) |
 <img width="1204" height="183" alt="image" src="https://github.com/user-attachments/assets/3f2b8bfe-888d-4ab1-b127-fbd7abd60a89" />

@@ -537,7 +537,7 @@ ubuntu컨테이너해서 실행하면 쉘이 실행되나 입력받을 터미널
        ```
        find app data -type d exec chmod 775 {} \;                    #찾아라 app과 data 타입이 폴더(app data 폴더 및 그 안에 있는 모든 폴더) 그리고 실행하라 권한을 775로 바꾸기, {}에 앞에서 찾은 폴더가 들어감
        find app data -type f exec chmod 644 {} \;
-       chmod 664 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt      #권한을 바꾸어라 664로 .dockderignore .gitignore Dockerfile docker-compose.yml requirements.txt 에서 
+       chmod 664 .dockerignore .gitignore Dockerfile docker-compose.yml requirements.txt      #권한을 바꾸어라 664로 .dockerignore .gitignore Dockerfile docker-compose.yml requirements.txt 에서 
        ``` 
      
   
